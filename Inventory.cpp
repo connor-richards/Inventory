@@ -5,6 +5,8 @@
 using std::string;
 using std::ostream;
   
+/* Inventory object constructor,
+ * initializes member variables */
 Inventory::Inventory(string name, float price, int count)
 {
   m_name = name;
@@ -12,11 +14,19 @@ Inventory::Inventory(string name, float price, int count)
   m_in_stock = count;
 }
 
+/* Sell function to maintain stock values */
 void Inventory::sell()
 {
-  m_in_stock--;
+  if(m_in_stock > 0) {
+    m_in_stock--;
+  }
+  else {
+    std::cerr << "Sorry, that item is out of stock" << std::endl;
+  }
 }
 
+/* Information function to produce output
+ * about the inventory item */
 ostream& operator<<(ostream& stream, const Inventory& item)
 {
   stream << item.m_name 
